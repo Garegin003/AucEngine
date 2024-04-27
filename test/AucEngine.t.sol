@@ -1,4 +1,5 @@
 // SPDX-License-Identifier: MIT
+
 pragma solidity ^0.8.25;
 
 import "forge-std/Test.sol";
@@ -11,7 +12,7 @@ contract AucEngineTest is Test, AucEngine {
         aucEngine = new AucEngine();
     }
 
-    function TestCreateAuction() public {
+    function testCreateAuction() public {
         uint256 startingPrice = 1 ether;
         uint256 discountRate = 5;
         uint256 duration = 2 days;
@@ -19,7 +20,7 @@ contract AucEngineTest is Test, AucEngine {
 
         aucEngine.createAuction(startingPrice, discountRate, duration, item);
 
-        AucEngine.Auction memory newAuction = AucEngine.auctions[1];
+        AucEngine.Auction memory newAuction = AucEngine.auctions[0];
         assertEq(newAuction.seller, msg.sender);
         assertEq(newAuction.startingPrice, startingPrice);
         assertEq(newAuction.startingPrice, startingPrice);
@@ -32,7 +33,7 @@ contract AucEngineTest is Test, AucEngine {
         assertFalse(newAuction.stopped);
     }
 
-    function TestGetPriceFor() public {
+    function testGetPriceFor() public {
         uint256 startingPrice = 1 ether;
         uint256 discountRate = 5;
         uint256 duration = 2 days;
@@ -44,7 +45,7 @@ contract AucEngineTest is Test, AucEngine {
         assertTrue(price < startingPrice);
     }
 
-    function TestBuy() public {
+    function testBuy() public {
         uint256 startingPrice = 1 ether;
         uint256 discountRate = 5;
         uint256 duration = 2 days;
@@ -60,3 +61,5 @@ contract AucEngineTest is Test, AucEngine {
         assertEq(auction.finalPrice, price);
     }
 }
+
+
