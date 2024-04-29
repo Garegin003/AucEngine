@@ -91,3 +91,6 @@ contract AucEngine {
         emit AunctionEnded(_index, cPrice, msg.sender);
     }
 }
+
+
+
